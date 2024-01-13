@@ -4,12 +4,15 @@ on:
   push:
     branches:
       - develop-uat
+  pull_request: 
+    branches:
+      - develop-uat
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install Java 
         uses: actions/setup-java@v2
@@ -25,7 +28,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with: 
           node-version: '18'
 
@@ -37,9 +40,9 @@ jobs:
       - name: Build App
         run: |
               cd ./android
-              ./gradlew assembleDebug
+              ./gradlew assembleRelease
 
-      - name: Upload application
+      - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v2
         with: 
             name: app
