@@ -6,10 +6,22 @@ const DATA = [
   {
     id: 1,
     name: 'Basic',
+    nav: 'Basic',
   },
   {
     id: 2,
     name: 'Intermediate',
+    nav: 'Intermediate',
+  },
+  {
+    id: 3,
+    name: 'Custom Tab Bar',
+    nav: 'TabBar',
+  },
+  {
+    id: 4,
+    name: 'Shared Elements',
+    nav: '',
   },
 ];
 
@@ -26,7 +38,7 @@ const Home = () => {
           <Button
             style={{width: 100, height: 100}}
             title={item.name}
-            onPress={() => handlePress(item.name)}
+            onPress={() => handlePress(item.nav)}
           />
         )}
         keyExtractor={item => item.id}
