@@ -7,28 +7,27 @@ import {Animated, View, TouchableOpacity, ScrollView} from 'react-native';
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 function MyTabBar({state, descriptors, navigation, position}) {
-  const [indexA, setIndex] = useState(position);
+  const [indexA, setIndex] = useState(state.index);
   const [xValue, setXValue] = useState([]);
   const ref = useRef(0);
 
   const openItem = () => {
     console.log('masuk openItem');
+    console.log('xValue[indexA]', xValue[indexA]);
     ref.current.scrollTo({x: xValue[indexA] - 50, animated: true});
   };
 
   useEffect(() => {
-    console.log('change index');
-    console.log('indexA', indexA);
     openItem();
   }, [indexA]);
 
   useEffect(() => {
     if (state.routes.length === xValue.length) {
-      console.log('masuk sni');
-      console.log('first', indexA);
       openItem();
     }
   }, [xValue]);
+
+  console.log('state', state);
 
   return (
     <View style={{flexDirection: 'row', backgroundColor: '#fff'}}>
