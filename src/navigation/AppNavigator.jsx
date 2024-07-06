@@ -6,6 +6,7 @@ import Basic from '../screens/basic';
 import Opacity from '../screens/basic/opacity';
 import MainTabBar from '../screens/tabBar';
 import TabNavigator from '../screens/tabBar/TabNavigator';
+import ScrollToIndex from '../screens/flatlist/scrollToIndex';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function AppStack() {
       <Stack.Screen name="Opacity" component={Opacity} />
       <Stack.Screen name="TabBar" component={MainTabBar} />
       <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}} />
+      <Stack.Screen name="FlatlistScrollToIndex" component={ScrollToIndex} />
     </Stack.Navigator>
   );
 }

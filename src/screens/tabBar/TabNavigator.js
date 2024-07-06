@@ -11,7 +11,16 @@ const TabNavigator = () => {
     <Tab.Navigator
       initialRouteName="Home"
       tabBar={props => <MyTabBar {...props} />}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        listeners={{
+          swipeStart: e => {
+            console.log('swipeStart');
+            console.log(e);
+          },
+        }}
+      />
       <Tab.Screen name="Payment" component={PaymentScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />

@@ -1,4 +1,15 @@
-import {Button, StyleSheet, FlatList, View, SafeAreaView} from 'react-native';
+import {
+  Button,
+  StyleSheet,
+  FlatList,
+  View,
+  SafeAreaView,
+  Dimensions,
+  PixelRatio,
+  Text,
+  useWindowDimensions,
+  ScrollView,
+} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
@@ -23,15 +34,21 @@ const DATA = [
     name: 'Shared Elements',
     nav: '',
   },
+  {
+    id: 5,
+    name: 'Flatlist ScrollToIndex',
+    nav: 'FlatlistScrollToIndex',
+  },
 ];
 
 const Home = () => {
   const navigation = useNavigation();
+  const {fontScale, height, scale, width} = useWindowDimensions();
 
   const handlePress = screen => navigation.navigate(screen);
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <FlatList
         data={DATA}
         renderItem={({item}) => (
@@ -45,7 +62,15 @@ const Home = () => {
         ItemSeparatorComponent={() => <View style={{height: 25}} />}
         // horizontal
       />
-    </View>
+      <Text maxFontSizeMultiplier={1} style={styles.text}>
+        Height: {height}
+      </Text>
+      <Text allowFontScaling={false} style={styles.text}>
+        Width: {width}
+      </Text>
+      <Text style={styles.text}>Font scale: {fontScale}</Text>
+      <Text style={styles.text}>Pixel ratio: {scale}</Text>
+    </ScrollView>
   );
 };
 
@@ -56,5 +81,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color: 'black',
   },
 });
